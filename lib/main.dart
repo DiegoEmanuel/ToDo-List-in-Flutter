@@ -18,7 +18,7 @@ class TodoItem extends StatelessWidget {
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) return null;
 
-    return TextStyle(
+    return const TextStyle(
       color: Colors.black54,
       decoration: TextDecoration.lineThrough,
     );
@@ -40,7 +40,7 @@ class TodoItem extends StatelessWidget {
 
 class TodoList extends StatefulWidget {
   @override
-  _TodoListState createState() => new _TodoListState();
+  _TodoListState createState() => _TodoListState();
 }
 
 class _TodoListState extends State<TodoList> {
@@ -49,12 +49,12 @@ class _TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Todo list'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Todo list'),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         children: _todos.map((Todo todo) {
           return TodoItem(
             todo: todo,
@@ -65,7 +65,7 @@ class _TodoListState extends State<TodoList> {
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(),
           tooltip: 'Add Item',
-          child: Icon(Icons.add)),
+          child: const Icon(Icons.add)),
     );
   }
 
@@ -109,14 +109,16 @@ class _TodoListState extends State<TodoList> {
 }
 
 class TodoApp extends StatelessWidget {
+  const TodoApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Todo list',
-      home: new TodoList(),
+      home: TodoList(),
     );
   }
 }
 
-void main() => runApp(new TodoApp());
+void main() => runApp(const TodoApp());
